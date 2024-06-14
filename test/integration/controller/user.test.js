@@ -4,6 +4,11 @@ const { mockAsync, RESPONSE, USER, FILE } = require("../../util/");
 
 describe("UserController", () => {
   it("Deve criar usuário com sucesso", async () => {
+    const uploadStub = mockAsync(
+      sails.helpers,
+      "upload",
+      "https://prova.com.br/photo.png"
+    );
 
     const databaseStub = mockAsync(Users, "create", true);
     const req = {
@@ -22,7 +27,7 @@ describe("UserController", () => {
     const findOneStub = mockAsync(Users, "findOne", USER);
     const req = {
       body: {
-        email: "",
+        email: "test@prova.inteli.edu.brS",
         password: "password123",
       },
     };
